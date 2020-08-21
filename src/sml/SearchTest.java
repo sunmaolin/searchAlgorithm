@@ -11,7 +11,10 @@ public class SearchTest {
         //测试基础二分查找
 //        index = BinarySerach.binarySearch(array,0,array.length-1,-1);
         //测试优化二分查找，查找所有的相同值的下标
-        List<Integer> indexList = BinarySerach.binarySearch2(array,0,array.length-1,0);
-        System.out.println(indexList.size());
+//        List<Integer> indexList = BinarySerach.binarySearch2(array,0,array.length-1,0);
+//        System.out.println(indexList.size());
+        //测试插值查找算法
+        index = InsertValueSearch.insertValueSearch(array,0,array.length-1,1);
+        System.out.println(index);
     }
 }
