@@ -18,7 +18,7 @@ public class BinarySerach {
      */
     public static int binarySearch(int[] array,int left,int right,int findValue){
         //没有找到的情况就是
-        if(left > right){
+        if(left > right || findValue < array[left] || findValue > array[right]){
             return -1;
         }
 
@@ -41,7 +41,7 @@ public class BinarySerach {
      * @return
      */
     public static List<Integer> binarySearch2(int[] array,int left,int right,int findValue){
-        if(left > right){
+        if(left > right || findValue < array[left] || findValue > array[right]){
             return new ArrayList<>();
         }
         int mid = (left + right)/2;
