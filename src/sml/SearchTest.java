@@ -14,7 +14,9 @@ public class SearchTest {
 //        List<Integer> indexList = BinarySerach.binarySearch2(array,0,array.length-1,0);
 //        System.out.println(indexList.size());
         //测试插值查找算法
-        index = InsertValueSearch.insertValueSearch(array,0,array.length-1,1);
+//        index = InsertValueSearch.insertValueSearch(array,0,array.length-1,1);
+        //测试斐波那契查找
+        index = FibonacciSearch.fibonacciSearch(array,4);
         System.out.println(index);
     }
 }
