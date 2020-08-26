@@ -2,6 +2,9 @@ package sml.hashTableDemo;
 
 import java.util.Scanner;
 
+/**
+ * hashtable就是数组加链表
+ */
 public class HashTableDemo {
     public static void main(String[] args) {
         HashTable hashTable = new HashTable(5);
