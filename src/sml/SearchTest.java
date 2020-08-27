@@ -1,5 +1,8 @@
 package sml;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 public class SearchTest {
@@ -18,5 +21,8 @@ public class SearchTest {
         //测试斐波那契查找
         index = FibonacciSearch.fibonacciSearch(array,4);
         System.out.println(index);
+
+        String a = "0.8";
+        System.out.println(Float.parseFloat(a));
     }
 }

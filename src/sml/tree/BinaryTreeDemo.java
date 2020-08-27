@@ -22,38 +22,47 @@ public class BinaryTreeDemo {
         node3.setLeft(node5);
 
         //测试
-        System.out.println("前序遍历");
-        binaryTree.preOrder();
-        System.out.println("后序遍历");
-        binaryTree.postOrder();
-        System.out.println("中序遍历");
-        binaryTree.infixOrder();
+//        System.out.println("前序遍历");
+//        binaryTree.preOrder();
+//        System.out.println("后序遍历");
+//        binaryTree.postOrder();
+//        System.out.println("中序遍历");
+//        binaryTree.infixOrder();
+//
+//        //测试
+//        System.out.println("前序查找");
+//        HeroNode resNode = binaryTree.preOrderSearch(5);
+//        if(resNode != null){
+//            System.out.println("找到了");
+//            System.out.println(resNode.toString());
+//        }else{
+//            System.out.println("没有找到no = 5的英雄");
+//        }
+//        System.out.println("中序查找");
+//        resNode = binaryTree.infixOrderSearch(5);
+//        if(resNode != null){
+//            System.out.println("找到了");
+//            System.out.println(resNode.toString());
+//        }else{
+//            System.out.println("没有找到no = 5的英雄");
+//        }
+//        System.out.println("后续查找");
+//        resNode = binaryTree.postOrderSearch(5);
+//        if(resNode != null){
+//            System.out.println("找到了");
+//            System.out.println(resNode.toString());
+//        }else{
+//            System.out.println("没有找到no = 5的英雄");
+//        }
 
-        //测试
-        System.out.println("前序查找");
-        HeroNode resNode = binaryTree.preOrderSearch(5);
-        if(resNode != null){
-            System.out.println("找到了");
-            System.out.println(resNode.toString());
-        }else{
-            System.out.println("没有找到no = 5的英雄");
-        }
-        System.out.println("中序查找");
-        resNode = binaryTree.infixOrderSearch(5);
-        if(resNode != null){
-            System.out.println("找到了");
-            System.out.println(resNode.toString());
-        }else{
-            System.out.println("没有找到no = 5的英雄");
-        }
-        System.out.println("后续查找");
-        resNode = binaryTree.postOrderSearch(5);
-        if(resNode != null){
-            System.out.println("找到了");
-            System.out.println(resNode.toString());
-        }else{
-            System.out.println("没有找到no = 5的英雄");
-        }
+        //测试删除
+        System.out.println("删除前");
+        binaryTree.preOrder();
+        binaryTree.delNode(5);
+//        binaryTree.delNode(3);
+        System.out.println("删除后");
+        binaryTree.preOrder();
+
     }
 }
 
@@ -116,6 +125,13 @@ class BinaryTree{
             return root.postOrderSearch(no);
         }else{
             return null;
+        }
+    }
+    //递归删除
+    public void delNode(int no){
+        if(this.root != null && this.root.getNo() != no){
+            this.root.delNode(no);
+            return;
         }
     }
 }
@@ -272,5 +288,25 @@ class HeroNode{
             return this;
         }
         return resNode;
+    }
+
+    //递归删除节点
+    //1.如果是叶子节点就删除该节点
+    //2.若果是非叶子节点，就删除该子树
+    public void delNode(int no){
+        if(this.left != null && this.left.no == no){
+            this.left = null;
+            return;
+        }
+        if(this.right != null && this.right.no == no){
+            this.right = null;
+            return;
+        }
+        if(this.left != null){
+            this.left.delNode(no);
+        }
+        if(this.right != null){
+            this.right.delNode(no);
+        }
     }
 }
