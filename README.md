@@ -1,2 +1,2 @@
 # searchAlgorithm
-查找算法
+查找和数的算法
