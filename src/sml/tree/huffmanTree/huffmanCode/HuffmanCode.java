@@ -7,6 +7,20 @@ import java.util.*;
  */
 public class HuffmanCode {
     public static void main(String[] args) {
+        //这里不只可以压缩字符串也可以压缩文件，通过流读取
+        /**
+         * 思路：通过文件流进行读取，文件流写出，中间加上个高级流对(obj)象流
+         * 写出后在将赫夫曼编码后的字节数组写入压缩文件，方便以后我们恢复
+         * 文件进行使用。
+         *
+         * 解压时通过对象写入的顺序，类似于压栈，然后在取出俩个对象
+         *
+         * 注意事项：
+         * 1.如果文件本身就是经过压缩处理的，那么使用赫夫曼在压缩效率不会右明显变化
+         * 2.赫夫曼编码是按字节来处理的，因此可以处理所有的文件
+         * 3.如果一个文件中重复的数据不多，压缩效果也不会很明显
+         */
+
         String content = "i like like like java do you like a java";
         byte[] contentBytes = content.getBytes();
         System.out.println("编码之前的长度："+contentBytes.length);
