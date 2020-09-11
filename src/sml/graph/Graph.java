@@ -1,6 +1,7 @@
 package sml.graph;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * 图
@@ -31,7 +32,9 @@ public class Graph {
         graph.showGraph();
 
         //测试深度优先遍历
-        graph.dfs();
+//        graph.dfs();//这里重载遍历每一个节点，防止某节点谁也没联通
+        //测试广度优先
+        graph.bfs();
     }
 
     public Graph(int vertexLength) {
@@ -93,6 +96,46 @@ public class Graph {
         for (int i = 0; i < getNumOfVertex(); i++) {
             if(!isVisited[i]){
                 dfs(isVisited,i);
+            }
+        }
+    }
+
+    //对一个节点进行广度优先遍历的方法
+    private void bfs(boolean[] isVisited,int i){
+        int u;//表示队列的头节点对应下标
+        int w;//邻接点w
+        //队列，记录节点访问的顺序
+        LinkedList queue = new LinkedList();
+        //访问节点输出节点信息
+        System.out.print(getValueByIndex(i) + "=>");
+        isVisited[i] = true;
+        //将节点加入队列
+        queue.addLast(i);
+        while(!queue.isEmpty()){
+            //取出队列的头节点下标
+            u = (int)queue.removeFirst();
+            //得到第一个邻接点的下标w
+            w = getFirstNeighbor(u);
+            while(w != -1){
+                //是否访问过
+                if(!isVisited[w]){
+                    System.out.print(getValueByIndex(w)+"=>");
+                    //标记以访问
+                    isVisited[w] = true;
+                    //入队列
+                    queue.addLast(w);
+                }
+                w = getNextNeighbor(u,w);
+            }
+        }
+
+    }
+
+    //遍历所有的节点，都进行广度优先搜索
+    public void bfs(){
+        for (int i = 0; i < getNumOfVertex(); i++) {
+            if(!isVisited[i]){
+                bfs(isVisited,i);
             }
         }
     }
