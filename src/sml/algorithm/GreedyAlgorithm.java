@@ -58,7 +58,8 @@ public class GreedyAlgorithm {
         ArrayList<String> selects = new ArrayList<>();
 
         //定义一个临时集合，保存在遍历过程中给，存放遍历过程中的电台覆盖的地区和当前还没有覆盖的地区的交集
-        HashSet<String> tempSet = new HashSet<>();
+        //这里不使用临时变量不是更好吗？虽然会改变原集合
+//        HashSet<String> tempSet = new HashSet<>();
 
         //定义一个maxKey，保存在一次遍历过程中，能够覆盖最大未覆盖地区对应的电台key
         //如果maskKey不为空，则会加入到selects中
@@ -68,16 +69,16 @@ public class GreedyAlgorithm {
             //每次循环需要置空
             maxKey=null;
             for(String key : broadcases.keySet()){
-                tempSet.clear();
+//                tempSet.clear();
                 //当前的key能覆盖的地区
                 HashSet<String> areas = broadcases.get(key);
-                tempSet.addAll(areas);
+//                tempSet.addAll(areas);
                 //求出tempSet和allAreas集合的交集，不知道啥意思就看源码
-                tempSet.retainAll(allAreas);
+                areas.retainAll(allAreas);
                 //如果当前这个集合包含的未覆盖地区的数量，比maxKey指向的集合未覆盖的地区还多
                 //就需要重置maxKey
                 //每次都选最好的，就是贪心算法的特点
-                if(tempSet.size()>0 && (maxKey == null || tempSet.size() > broadcases.get(maxKey).size())){
+                if(areas.size()>0 && (maxKey == null || areas.size() > broadcases.get(maxKey).size())){
                     maxKey = key;
                 }
             }
