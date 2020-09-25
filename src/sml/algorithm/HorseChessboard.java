@@ -3,6 +3,7 @@ package sml.algorithm;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * 骑士周游算法，马踏棋盘
@@ -17,8 +18,8 @@ public class HorseChessboard {
     private static boolean finished;
 
     public static void main(String[] args) {
-        X = 6;
-        Y = 6;
+        X = 8;
+        Y = 8;
         int row = 1;
         int column = 1;
         int[][] chessboard = new int[X][Y];
@@ -43,7 +44,8 @@ public class HorseChessboard {
         visited[row*X + column] = true;//标记该位置已访问
         //获取当前位置可以走的下一步集合
         ArrayList<Point> points = next(new Point(column,row));
-
+        //进行非递减排序，从下一步能够走的最小的位置开始循环，减少回溯次数，贪心算法的应用
+        sort(points);
         while (!points.isEmpty()){
             Point p = points.remove(0);//取出下一个可以走的位置
             //判断该点是否已经访问过
@@ -98,5 +100,19 @@ public class HorseChessboard {
             points.add(new Point(p1));
         }
         return points;
+    }
+
+    /**
+     * 根据当前这步的所有下一步进行非递减排序，选择能够走的位置最小的，减少回溯次数
+     * 也是贪心算法的应用
+     * @param points
+     */
+    public static void sort(ArrayList<Point> points){
+        points.sort(new Comparator<Point>() {
+            @Override
+            public int compare(Point o1, Point o2) {
+                return next(o1).size() - next(o2).size();
+            }
+        });
     }
 }
